@@ -1,0 +1,9 @@
+##### errors
+## Set Administrator password: 
+## Re-enter Administrator password: 
+## Updating Dashboard for frappe
+## mySite17.test: SystemSettings.enable_scheduler is UNSET
+## *** Scheduler is disabled ***
+### solution
+bench --site mySite17.test set-config enable_scheduler 1
+e

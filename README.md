@@ -6,3 +6,8 @@ maually create currentSite.txt file and add the site we want to be served on it.
 #### problem
 stoping unexpectdly while running bench start
 #### solution
+the problem of catch identify the processes run then kill by  that process id
+#### problem
+unable to login to frappe site
+#### solution
+remember and insert Adminstrator password you entered while crating site

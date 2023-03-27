@@ -11,3 +11,7 @@ the problem of catch identify the processes run then kill by  that process id
 unable to login to frappe site
 #### solution
 remember and insert Adminstrator password you entered while crating site
+#### problem
+while installing mariadb client
+#### solution
+don't put the version you are working on

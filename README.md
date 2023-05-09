@@ -2,7 +2,7 @@
 #### problem 1
 unable to create currentSite.txt file consequently unable to access the site
 #### solution 1
-maually create sites/currentSite.txt file and add the site we want to be served on it.
+maually create sites/currentsite.txt file and add the site we want to be served on it.
 #### problem 2
 stoping unexpectdly while running bench start
 #### solution 2

@@ -1,17 +1,17 @@
 ##### this is the file to show errors while learning frappe(python backend framework)
-#### problem
+#### problem 1
 unable to create currentSite.txt file consequently unable to access the site
-#### solution
+#### solution 1
 maually create currentSite.txt file and add the site we want to be served on it.
-#### problem
+#### problem 2
 stoping unexpectdly while running bench start
-#### solution
+#### solution 2
 the problem of catch identify the processes run then kill by  that process id
-#### problem
+#### problem 3
 unable to login to frappe site
-#### solution
+#### solution 3
 remember and insert Adminstrator password you entered while crating site
-#### problem
+#### problem 4
 while installing mariadb client
-#### solution
+#### solution 4
 don't put the version you are working on

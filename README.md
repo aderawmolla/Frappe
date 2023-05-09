@@ -1,6 +1,6 @@
 ##### this is the file to show errors while learning frappe(python backend framework)
 #### problem 1
-unable to create currentSite.txt file consequently unable to access the site
+unable to create currentsite.txt file consequently unable to access the site
 #### solution 1
 maually create sites/currentsite.txt file and add the site we want to be served on it.
 #### problem 2

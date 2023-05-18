@@ -1,0 +1,653 @@
+[
+  {
+    "title": "shop",
+    "english": "Shop",
+    "amharic": ""
+  },
+  {
+    "title": "reconnect",
+    "english": "Reconnect",
+    "amharic": "እንደገና ያገናኙ"
+  },
+  {
+    "title": "internetIssue",
+    "english": "Internet Issue",
+    "amharic": "የኔትዎርክ ችግር"
+  },
+  {
+    "title": "networkErrorPrompt",
+    "english": "This App requires internet connection to keep everything in sync and working properly. \nHow to fix it.",
+    "amharic": "ይህ መተግበሪያ በትክክል እንዲሠራ ኔትዎርክ ያስፈልገዋል \n ችግሩን ለመፍታት"
+  },
+  {
+    "title": "turnOnData",
+    "english": "Turn your cellular data",
+    "amharic": "ነትዎርክ ያብሩ"
+  },
+  {
+    "title": "welcomeMessage",
+    "english": "Welcome to Adret",
+    "amharic": "እንኳን ወደ Adret በደህና መጡ "
+  },
+  {
+    "title": "loginPrompt",
+    "english": "Please provide your Detail to login",
+    "amharic": "ለመግባት የመለያ መረጃዎችን ያስገቡ"
+  },
+  {
+    "title": "companyCode",
+    "english": "Company Code",
+    "amharic": "የድርጅት መለያ ቁጥር"
+  },
+  {
+    "title": "username",
+    "english": "Username",
+    "amharic": "መለያ ስም"
+  },
+  {
+    "title": "password",
+    "english": "Password",
+    "amharic": "የይለፍ ቃል"
+  },
+  {
+    "title": "companyRequired",
+    "english": "Company code is required",
+    "amharic": "የድርጅት መለያ ቁጥር ያስፈልጋል"
+  },
+  {
+    "title": "usernameRequired",
+    "english": "Please input your username",
+    "amharic": "መለያ ቁትር ያስገቡ"
+  },
+  {
+    "title": "passwordRequired",
+    "english": "Please input your password",
+    "amharic": "መለያ ቁትር ያስገቡ"
+  },
+  {
+    "title": "errorNotification",
+    "english": "Something went wrong. Please try again.",
+    "amharic": "ችግር ተፈጥሯል እባክዎ እንደገና ይሞክሩ"
+  },
+  {
+    "title": "usernameRequired",
+    "english": "Please input your username",
+    "amharic": "መለያ ቁትር ያስገቡ"
+  },
+  {
+    "title": "usernameRequired",
+    "english": "Please input your username",
+    "amharic": "መለያ ቁትር ያስገቡ"
+  },
+  {
+    "title": "usernameRequired",
+    "english": "Please input your username",
+    "amharic": "መለያ ቁትር ያስገቡ"
+  },
+  {
+    "title": "usernameRequired",
+    "english": "Please input your username",
+    "amharic": "መለያ ቁትር ያስገቡ"
+  },
+  {
+    "title": "employee",
+    "english": "Employee's",
+    "amharic": "ሠራተኞች"
+  },
+  {
+    "title": "employee",
+    "english": "Employee's",
+    "amharic": "ሠራተኞች"
+  },
+  {
+    "title": "addEmployee",
+    "english": "Add Employee",
+    "amharic": "ሠራተኛ ይጨምሩ"
+  },
+  {
+    "title": "addEmployeeButtonText",
+    "english": "Click the button bellow to add your employee",
+    "amharic": "ሠራተኞችን ለመጨመር ከዚህ በታች ያለውን ይጫኑ"
+  },
+  {
+    "title": "noEmployee",
+    "english": "No Employees under this shop",
+    "amharic": "በዚህ መገበያያ ዉስጥ ምንም ሠራተኛ የለም"
+  },
+  {
+    "title": "fullName",
+    "english": "Full Name",
+    "amharic": "ሙሉ ስም"
+  },
+  {
+    "title": "phoneNumber",
+    "english": "Phone Number",
+    "amharic": "ስልክ ቁጥር"
+  },
+  {
+    "title": "confirmPassword",
+    "english": "Confirm Password",
+    "amharic": "ለማረጋገጥ በድጋሚ የይለፍ ቃል"
+  },
+  {
+    "title": "shortName",
+    "english": "Name is too short",
+    "amharic": "የገባው ስም አጭር ነው"
+  },
+  {
+    "title": "phoneNumberErrorMessage",
+    "english": "Please provide a valid phone number, starting with +251",
+    "amharic": "እባክዎ በ +251 የሚጀምር ትክክለኛ ስልክ ቁጥር ያስገቡ"
+  },
+  {
+    "title": "passwordErrorMessage",
+    "english": "Password must contain a Special character, number, upper and lower case",
+    "amharic": "የይለፍ ቃሉ ቁጥሮችን እና የተለያዩ ሆሄያትን ማካተት አለበት"
+  },
+  {
+    "title": "confirmPasswordErrorMessage",
+    "english": "Password doesn't match",
+    "amharic": "የገቡት የይልፍ ቃላቶች አልተመሳስሉም"
+  },
+  {
+    "title": "creatUserError",
+    "english": "User Creation issue",
+    "amharic": "ተጠቃሚ የመፍጠር ችግር"
+  },
+  {
+    "title": "create",
+    "english": "Creat",
+    "amharic": "ፍጠር"
+  },
+  {
+    "title": "profile",
+    "english": "Profile",
+    "amharic": "የራስ መግለጫ"
+  },
+  {
+    "title": "emailErrorMessage",
+    "english": "Please provide a valid email address",
+    "amharic": "እባክዎ ትክክለኛ ኢሜል ያስገቡ"
+  },
+  {
+    "title": "profleUpdateMessage",
+    "english": "Profile updated successful!",
+    "amharic": "የራስ መግለጫው በሚገባ ተስተካክሏል"
+  },
+  {
+    "title": "update",
+    "english": "Update",
+    "amharic": "አስተካካል"
+  },
+  {
+    "title": "passwordUpdateMessage",
+    "english": "Passwor updated successful!",
+    "amharic": "የሚስጥር ቊጥሩ  በሚገባ ተስተካክሏል"
+  },
+  {
+    "title": "oldPassword",
+    "english": "Old password",
+    "amharic": "የበፊቱ የሚስጥር ቁጥር"
+  },
+  {
+    "title": "newPassword",
+    "english": "New password",
+    "amharic": "አዲስ የሚስጥር ቁጥር"
+  },
+  {
+    "title": "reEnterPassword",
+    "english": "Re-enter password",
+    "amharic": "በድጋሚ የሚስጥር ቁጥር ያስገቡ"
+  },
+  {
+    "title": "emailAddress",
+    "english": "Email Address",
+    "amharic": "ኢሜል"
+  },
+  {
+    "title": "checkout",
+    "english": "Checkout",
+    "amharic": "አረጋግጥህ ውጣ"
+  },
+  {
+    "title": "close",
+    "english": "Close",
+    "amharic": "ዝጋ"
+  },
+  {
+    "title": "emptyCheckout",
+    "english": "Empty Checkout",
+    "amharic": "ባዶ መውጫ"
+  },
+  {
+    "title": "emptyChecoutMessage",
+    "english": "No Product has been added for checkout.",
+    "amharic": "ለመውጣት የሚያገለግል ምንም አይነት እቃ ኣልተጨመረም"
+  },
+  {
+    "title": "emptyCheckout",
+    "english": "Empty Checkout",
+    "amharic": "ባዶ መውጫ"
+  },
+  {
+    "title": "etb",
+    "english": "ETB",
+    "amharic": "ብር"
+  },
+  {
+    "title": "items",
+    "english": "items",
+    "amharic": "የእቃ አይነቶች"
+  },
+  {
+    "title": "priceIsToLow",
+    "english": "Price is to low",
+    "amharic": "ዋጋው ከተገቢው መጠን ነው"
+  },
+  {
+    "title": "orderCreatedMessage",
+    "english": "Order created successfully",
+    "amharic": "ትእዛዙ በተሳካ ሁኔታ ተፈጥሯል"
+  },
+  {
+    "title": "saleClosedMessagae",
+    "english": "today sales collected and closed by manger",
+    "amharic": "የዛሬ ሽያጭ በማናጀሩ ተሰብስቦ ተዘግቷል"
+  },
+  {
+    "title": "saleColsedErrorMessage",
+    "english": "Manager has collected and closed today sales. Please contact manager.",
+    "amharic": "ማናጀሩ ሽያጩን ሰብስቦ ዘግቶታል። እባክዎ ማናጀሩን ያናግሩ"
+  },
+  {
+    "title": "sell",
+    "english": "Sell",
+    "amharic": "ሽጥ"
+  },
+  {
+    "title": "instocksData",
+    "english": "InStocks Data",
+    "amharic": "የክምችት መረጃ"
+  },
+  {
+    "title": "sellingPrice",
+    "english": "Selling Price",
+    "amharic": "የመሸጫ ዋጋ"
+  },
+  {
+    "title": "addProduct",
+    "english": "Add Product",
+    "amharic": "እቃ ጨምር"
+  },
+  {
+    "title": "productTitle",
+    "english": "Product Title",
+    "amharic": "እቃ ጨምር"
+  },
+  {
+    "title": "product",
+    "english": "Product",
+    "amharic": "እቃ"
+  },
+  {
+    "title": "closingProductUpdate",
+    "english": "Closing Product update",
+    "amharic": "የእቃ ማስተካከያውን በመዝጋት ላይ"
+  },
+  {
+    "title": "closeProductUpdateMessage",
+    "english": "You have not saved your progress, if you close now all the updates you made will be lost",
+    "amharic": "ያሉበት ሁኔታ አልተመዘገበም። አሁን ከዘጉት የተደረጉት ማስተካከያዎች በሙሉ ይጥፋሉ።"
+  },
+  {
+    "title": "cancel",
+    "english": "Cancel",
+    "amharic": "ዝጋ"
+  },
+  {
+    "title": "allProducts",
+    "english": "All Products",
+    "amharic": "ሁሉም እቃዎች"
+  },
+  {
+    "title": "manager",
+    "english": "Manager",
+    "amharic": "ማናጀር"
+  },
+  {
+    "title": "addProductPrompt",
+    "english": "Add Your Products and start tracking your profit",
+    "amharic": "እቃዎትን ጨምረው ትርፍ ማካበት ይጀምሩ"
+  },
+  {
+    "title": " addProductNotice",
+    "english": "You can start selling once Product are added.",
+    "amharic": "አንዴ እቃውን ከጭመሩ በኋል መሸት ይችላሉ"
+  },
+  {
+    "title": "addProductErrorMessage",
+    "english": "No Product Was Found.",
+    "amharic": "እቃ ጨምር"
+  },
+  {
+    "title": "topSelling",
+    "english": "Top Selling",
+    "amharic": "ከፍተኛ የተሽጡ"
+  },
+  {
+    "title": "searchPrompt",
+    "english": "Search Products Based On Product Title Or Product Code.",
+    "amharic": "ስም ወይንም መለያ ቁትር በመጠቀም እቃዎችን ይፈልጉ"
+  },
+  {
+    "title": "searchProducts",
+    "english": "Search product",
+    "amharic": "እቃዎችን ይፈልጉ"
+  },
+  {
+    "title": "fetchDataError",
+    "english": "Error Fetching data. please pull down to reload",
+    "amharic": "መረጃ ማሳየት አልተቻለም። ወደታች በመሳብ እንደገና ይሞክሩ"
+  },
+  {
+    "title": "summary",
+    "english": "Summary",
+    "amharic": "ማጠቃለያ"
+  },
+  {
+    "title": "dailySummary",
+    "english": "የቀን ማጠቃለያ",
+    "amharic": "እቃ ጨምር"
+  },
+  {
+    "title": "noSalesSoFar",
+    "english": "No sales So far",
+    "amharic": "እስካሁን ምንም ሽያጭ የለም"
+  },
+  {
+    "title": "goToSell",
+    "english": "Go to product and start selling",
+    "amharic": "ወደ እቃዎች ዝርዝር ይሂዱና መሸጥ ይጀምሩ"
+  },
+  {
+    "title": "filter",
+    "english": "filter",
+    "amharic": "አጣራ"
+  },
+  {
+    "title": "date",
+    "english": "Date",
+    "amharic": "ቀን"
+  },
+  {
+    "title": "allEmployeesSales",
+    "english": "All Employee's Sales",
+    "amharic": "የሑሉም ሠራታኞች ሽያጭ"
+  },
+  {
+    "title": "noItemsFound",
+    "english": "No items found",
+    "amharic": "እቃ ጨምር"
+  },
+  {
+    "title": "emptyListMessagae",
+    "english": "The list is currently Empty",
+    "amharic": "ማስቀመጫው ባዶ ነው"
+  },
+  {
+    "title": "inventoryTitle",
+    "english": "Inventory Title",
+    "amharic": "የዝርዝር እቃ ስም"
+  },
+  {
+    "title": "earning",
+    "english": "Earning",
+    "amharic": "ገቢ"
+  },
+  {
+    "title": "order",
+    "english": "Order",
+    "amharic": "ተዕዛዝ"
+  },
+  {
+    "title": "sales",
+    "english": "Sales",
+    "amharic": "ሽያጭ"
+  },
+  {
+    "title": "collect",
+    "english": "Collect",
+    "amharic": "ሰብስብ"
+  },
+  {
+    "title": "collecting",
+    "english": "Collecting",
+    "amharic": "በመሰብሰብ ላይ"
+  },
+  {
+    "title": "collected",
+    "english": "Collected",
+    "amharic": "የተሰበሰቡ"
+  },
+  {
+    "title": "profit",
+    "english": "Profit",
+    "amharic": "ትርፍ"
+  },
+  {
+    "title": "collectEmployee",
+    "english": "Collect Employee",
+    "amharic": "ሠራተኞችን ሰብስብ"
+  },
+  {
+    "title": "collectEmployeeCaution",
+    "english": "Caution only click confirm button at the end of the work day or when closing up, and after collecting money from the employee.",
+    "amharic": "ማሳሰቢያ ከታች ሰብስብ የሚለውን የሚጫኑት በቀኑ መጨረሻ ወይም ወውም ሲዘጉ እንዲሁም ከሰራተኞች ገንዘብ ከሰበሰቡ በኋላ ብቻ ነው"
+  },
+  {
+    "title": "shop",
+    "english": "Shop",
+    "amharic": "መሸጫ"
+  },
+  {
+    "title": "pullUpLoad",
+    "english": "Pull up load",
+    "amharic": "ወደ ላይ በመሳብ አዲስ ነገር ይጫኑ"
+  },
+
+  {
+    "title": "loadFailMessage",
+    "english": "Load Failed!Click retry!",
+    "amharic": "አዲዝ ነገር መጫን አልተቻለም። እንደገና ይሞክሩ የሚለውን ይጫኑ"
+  },
+  {
+    "title": "leasePullLoad",
+    "english": "Release to load more",
+    "amharic": "ብዙ አዲስ ነገር ለመጫን ይልቀቁት"
+  },
+  {
+    "title": "noMoreData",
+    "english": "No more Data",
+    "amharic": "ምንም መረጃ የለም"
+  },
+  {
+    "title": "save",
+    "english": "Save",
+    "amharic": "አስቀምጥ"
+  },
+  {
+    "title": "done",
+    "english": "Done",
+    "amharic": "ጨርስ"
+  },
+  {
+    "title": "cameraAccessDenied",
+    "english": "This Device has denied access to you camera",
+    "amharic": "ይህ ስልክ ካሜራውን እንዲተቀም አልተፈቀደለትም"
+  },
+  {
+    "title": "goToGiveAccess",
+    "english": "Go to setting to give access",
+    "amharic": "ፈቃድ ለመስጠት ወደ ማስተካከያው ይግቡ"
+  },
+  {
+    "title": "openSetting",
+    "english": "Open setting",
+    "amharic": "ማስተካከያውን ይክፈቱ"
+  },
+  {
+    "title": "category",
+    "english": "Category",
+    "amharic": "ምድብ"
+  },
+  {
+    "title": "category1",
+    "english": "shoe",
+    "amharic": "ጭማ"
+  },
+  {
+    "title": "category2",
+    "english": "Electronics",
+    "amharic": "የኮምፒተር የጥገና መሳሪያዎች"
+  },
+  {
+    "title": "category3",
+    "english": "cloth",
+    "amharic": "ልብስ"
+  },
+  {
+    "title": "category4",
+    "english": "vehicle",
+    "amharic": "ተሽከርካሪ"
+  },
+  {
+    "title": "productDescriptionPrompt",
+    "english": "Write A Product Description",
+    "amharic": "ስለእቅው መግለጫ የጨምሩ"
+  },
+  {
+    "title": "addCategory",
+    "english": "Add Category",
+    "amharic": "ምድብ ጨምር"
+  },
+  {
+    "title": "description",
+    "english": "Description",
+    "amharic": "መግለጫ"
+  },
+  {
+    "title": "fetchingProductErrorMessage",
+    "english": "Error fetching current product",
+    "amharic": "እቃዎችን ለማሳየት አልተቻለም"
+  },
+  {
+    "title": "closeOrReloadPage",
+    "english": "Please close or reload the page",
+    "amharic": "እባክዎ እንደገና ይጫኑ ወይንም ገጹን ይዝጉት"
+  },
+  {
+    "title": "reload",
+    "english": "Reload",
+    "amharic": "እንደገና ይጫኑ"
+  },
+  {
+    "title": "inventory",
+    "english": "Inventory",
+    "amharic": "ዝርዝር"
+  },
+  {
+    "title": "inventories",
+    "english": "Inventories",
+    "amharic": "ዝርዝሮች"
+  },
+  {
+    "title": "avialable",
+    "english": "Available",
+    "amharic": "የሚገኙ"
+  },
+  {
+    "title": "addInverntory",
+    "english": "Add Inventory",
+    "amharic": "ዝርዝር ጨምር"
+  },
+  {
+    "title": "addInventoryPrompt",
+    "english": "Press the button bellow to add the inventory detail",
+    "amharic": "የዝርዝሩን መረጃ ለመጨምር ከታች ያለውን ይጫኑ"
+  },
+  {
+    "title": "addInventoryCaution",
+    "english": "a product can only have 10 variation. please create a new product.",
+    "amharic": "አንድ እቃ ከ10 በላይ ዝርዝሮች ለኖሩት አይገባም። እባክዎ አዲስ እቃ ይጨምሩ"
+  },
+  {
+    "title": "variations",
+    "english": "Variations",
+    "amharic": "ልዩነቶች"
+  },
+  {
+    "title": "variation",
+    "english": "Variation",
+    "amharic": "ልዩነት"
+  },
+  {
+    "title": "validTextPrompt",
+    "english": "Please provide a valid text",
+    "amharic": "እባክዎ ትክክለኛ ጽሁፍ ያስገቡ"
+  },
+  {
+    "title": "uploadProductImage",
+    "english": "Upload Product Images",
+    "amharic": "ለእቃው ፎቶ ይጨምሩ"
+  },
+  {
+    "title": "mediaErrorMessage",
+    "english": "No Media Was Found",
+    "amharic": "ምንም መሣሪያ አልተገኘም"
+  },
+  {
+    "title": "cameraAccessPrompt",
+    "english": "This Feature requires Access to your Photos",
+    "amharic": ""
+  },
+  {
+    "title": "settings",
+    "english": "Settings",
+    "amharic": "ማስተካከያዎች"
+  },
+  {
+    "title": "photoLibrary",
+    "english": "Photo Library",
+    "amharic": "የፎቶ ማጠራቀሚያ"
+  },
+  {
+    "title": "buyingPrice",
+    "english": "Buying Price",
+    "amharic": "የመግዣ ዋጋ"
+  },
+  {
+    "title": "sellingPrice",
+    "english": "Selling Price",
+    "amharic": "የመሽጫ ዋጋ"
+  },
+  {
+    "title": "minSellingPrice",
+    "english": "Min Selling Price",
+    "amharic": "ዝቅተኛው የመሽጫ ዋጋ"
+  },
+  {
+    "title": "maxsellingPrice",
+    "english": "Max Selling Price",
+    "amharic": "ከፍተኛ የመሽጫ ዋጋ"
+  },
+  {
+    "title": "pricing",
+    "english": "Pricing",
+    "amharic": "የዋጋ ሁኔታ"
+  },
+  {
+    "title": "range",
+    "english": "Range",
+    "amharic": ""
+  }
+]

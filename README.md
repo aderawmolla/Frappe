@@ -15,3 +15,7 @@ remember and insert Adminstrator password you entered while crating site
 while installing mariadb client
 #### solution 4
 don't put the version you are working on
+##Problem 5
+Please make sure that Redis Queue runs @ redis://localhost:11000
+##solution 5
+https://discuss.frappe.io/t/please-make-sure-that-redis-queue-runs-redis-localhost-11000/105542/3

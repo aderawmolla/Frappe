@@ -1,4 +1,4 @@
-
+//script 1
 //this script assigns value in ERP next before saving to document
 frappe.ui.form.on('testUser', {
   before_save: function(frm) {
@@ -16,3 +16,35 @@ frappe.ui.form.on('testUser', {
   }
 });
 //
+
+
+//script 2
+//script to update child doctype properties
+frappe.ui.form.on('Log Book Summary', {
+    refresh: function(frm) {
+        frm.fields_dict['table_5'].grid.on_row_add = function(doc, cdt, cdn) {
+            var child = locals[cdt][cdn];
+            setDifference(child);
+        };
+        frm.fields_dict['table_5'].grid.on_row_refresh = function(doc, cdt, cdn) {
+            var child = locals[cdt][cdn];
+            setDifference(child);
+        };
+    }
+});
+
+frappe.ui.form.on('Log book Summary child', {
+    month_last: function(frm, cdt, cdn) {
+        var child = locals[cdt][cdn];
+        setDifference(child);
+    },
+    month_start: function(frm, cdt, cdn) {
+        var child = locals[cdt][cdn];
+        setDifference(child);
+    }
+});
+
+function setDifference(child) {
+    var difference = child.month_last - child.month_start;
+    frappe.model.set_value(child.doctype, child.name, 'month_difference', difference);
+}

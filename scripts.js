@@ -134,7 +134,7 @@ function setDifferenceOfKm(child) {
     frappe.model.set_value(child.doctype, child.name, 'diff', difference);
 }
 //script to get session user
-frappe.ui.form.on('Employee Monthly Timesheet', {
+frappe.ui.form.on('Equipment Daily Time Utilization Register', {
  onload: function(frm) {
   frappe.call({
    method: 'frappe.client.get_value',
@@ -146,7 +146,7 @@ frappe.ui.form.on('Employee Monthly Timesheet', {
    callback: function(response) {
     var user = response.message;
     if (user) {
-     frm.set_value('employee_name', user.full_name);
+     frm.set_value('prepared_by', user.full_name);
     }
    }
   });

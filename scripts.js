@@ -152,4 +152,15 @@ frappe.ui.form.on('Equipment Daily Time Utilization Register', {
   });
  }
 });
-
+//testing auto fill name from employee
+frappe.ui.form.on('Daily Utilization Register', {
+    onload: function(frm) {
+        // Fetch the Employee document
+        if (frm.doc.approved_by) {
+            frappe.db.get_value('Employee', frm.doc.approved_by, 'employee_name', function(data) {
+                // Set the employee name as the value of the approved_by field
+                frm.set_value('approved_by', data.employee_name);
+            });
+        }
+    }
+});

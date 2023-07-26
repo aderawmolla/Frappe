@@ -182,4 +182,53 @@ WS-Water Shortage
 LC-Lack of Coordination
 MF-Miscellaneous Factor
 WC-Weather Condition
-//
+//script to update the value of child doctype fields
+frappe.ui.form.on('Utilization Register Table', {
+    first_half_operator: function(frm, cdt, cdn) {
+        var child = locals[cdt][cdn];
+        if (child.first_half_operator) {
+            frappe.call({
+                method: 'frappe.client.get_value',
+                args: {
+                    doctype: 'Employee',
+                    filters: {
+                        name: child.first_half_operator
+                    },
+                    fieldname: 'employee_name'
+                },
+                callback: function(response) {
+                    if (response.message && response.message.employee_name) {
+                        console.log('Fetched Employee Name:', response.message.employee_name);
+                        frappe.model.set_value(cdt, cdn, 'first_half_name', response.message.employee_name);
+                    } else {
+                        console.log('No Employee Name found for:', child.first_half_operator);
+                    }
+                }
+            });
+        }
+    },
+    second_half_operator: function(frm, cdt, cdn) {
+        var child = locals[cdt][cdn];
+        if (child.second_half_operator) {
+            frappe.call({
+                method: 'frappe.client.get_value',
+                args: {
+                    doctype: 'Employee',
+                    filters: {
+                        name: child.second_half_operator
+                    },
+                    fieldname: 'employee_name'
+                },
+                callback: function(response) {
+                    if (response.message && response.message.employee_name) {
+                        console.log('Fetched Employee Name:', response.message.employee_name);
+                        frappe.model.set_value(cdt, cdn, 'second_half_name', response.message.employee_name);
+                    } else {
+                        console.log('No Employee Name found for:', child.second_half_operator);
+                    }
+                }
+            });
+        }
+    }
+});
+

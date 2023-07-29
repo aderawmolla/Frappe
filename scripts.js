@@ -231,4 +231,82 @@ frappe.ui.form.on('Utilization Register Table', {
         }
     }
 });
+////use this code
+frappe.ui.form.on('HeavyandLightVehiclesTable', {
+    service_hrs_counter_a: function(frm, cdt, cdn) {
+        var child = locals[cdt][cdn];
+        setDifference(child);
+    },
+    recommended_pm_km_b: function(frm, cdt, cdn) {
+        var child = locals[cdt][cdn];
+        setDifference(child);
+    }, 
+    next_service_counter_kms_c: function(frm, cdt, cdn) {
+        // No need to do anything here since this field is being updated by setDifference function
+    },
+    service_schedule_balance_d: function(frm, cdt, cdn) {
+        // No need to do anything here since this field is being updated by setDifference function
+    },
+    equipment_km_reading_e: function(frm, cdt, cdn) {
+        var child = locals[cdt][cdn];
+        setDifference(child);
+    },
+});
 
+function setDifference(child) {
+    var sum = child.service_hrs_counter_a + child.recommended_pm_km_b;
+    var difference = sum - child.equipment_km_reading_e; // Pass 'child.equipment_km_reading_e' instead of 'equipment_km_reading_e'
+
+    frappe.model.with_doc(child.doctype, child.name, function() {
+        frappe.model.set_value(child.doctype, child.name, 'next_service_counter_kms_c', sum);
+        frappe.model.set_value(child.doctype, child.name, 'service_schedule_balance_d', difference);
+        
+        // Call checkStatus after updating the fields to set the 'remark' field
+        checkStatus(child);
+    });
+}
+
+function checkStatus(child){
+    if (child.service_schedule_balance_d < 1000) {
+        frappe.model.set_value(child.doctype, child.name, 'remark', "WAITING PM");
+    } else {
+        frappe.model.set_value(child.doctype, child.name, 'remark', " "); 
+    }
+}
+////purchase order client
+
+frappe.ui.form.on('Purchase Order', {
+
+    pr_no: function(frm) {
+     if (frm.doc.pr_no) {
+        cur_frm.add_fetch('pr_no', 'purchase_for', 'purchase_for');
+        cur_frm.add_fetch('pr_no', 'receiving_project', 'receiving_project');
+        cur_frm.add_fetch('pr_no', 'date', 'schedule_date');
+        frm.refresh_field('purchase_for');
+        frm.refresh_field('receiving_project');
+        frm.refresh_field('schedule_date');
+      frm.clear_table('items');
+      console.log("Test 1");
+      frappe.model.with_doc('PR', frm.doc.pr_no, function() {
+   
+       let source_doc = frappe.model.get_doc('PR', frm.doc.pr_no);
+       console.log("source doc", source_doc)
+   
+       $.each(source_doc.purchase_requisition_item, function(index, source_row) {
+   
+        console.log("Test 3");
+       
+                   const target_row = frm.add_child('items');
+                    target_row.item_code = source_row.item_code;
+                    target_row.item_category = source_row.item_sub_category;
+                    target_row.description = source_row.description;
+                    target_row.uom = source_row.uom;
+                    target_row.qty = source_row.qty;
+   
+       });
+   
+       frm.refresh_field('items');
+      });
+     }
+    },
+   });

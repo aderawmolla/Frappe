@@ -314,36 +314,45 @@ frappe.ui.form.on('Purchase Order', {
 
 
 //a script filtering by date
-frappe.ui.form.on('Daily Equipment Utilization_Report', {
+
+frappe.ui.form.on('Equipment Daily Time Utilization Report', {
     start_date: function(frm) {
-        if (frm.doc.start_date) {
-            frappe.call({
-                method: 'frappe.client.get_list',
-                args: {
-                    doctype: 'Equipment Daily Time Utilization Register',
-                    filters: {
-                        'gc_date': ['between', [frm.doc.start_date, frm.doc.end_date]],
-                        'name': ['!=', frm.docname]
-                    }
-                },
-                callback: function(response) {
-                    if (response.message && Array.isArray(response.message)) {
-                        var records = response.message;
-                        console.log(`the length of records is ${records.length}`);
-                        for (var i = 0; i < records.length; i++) {
-                            var record = records[i];
-                            console.log(`Document name  ${record.name}`);
-                            // Fetch and log all fields from the referenced Utilization Register
-                            fetchAndLogAllFields(record.name); // Pass the name of the record
-                        }
-                    }
-                }
-            });
-        }
+        fetchAndAssign(frm);
+    },
+    project: function(frm) {
+        fetchAndAssign(frm);
     }
 });
 
-function fetchAndLogAllFields(utilizationRegisterName) {
+function fetchAndAssign(frm) {
+    if (frm.doc.start_date || frm.doc.project) {
+        frappe.call({
+            method: 'frappe.client.get_list',
+            args: {
+                doctype: 'Equipment Daily Time Utilization Register',
+                filters: {
+                    'gc_date': frm.doc.start_date,
+                    'name': ['!=', frm.docname],
+                    'project': frm.doc.project
+                }
+            },
+            callback: function(response) {
+                if (response.message && Array.isArray(response.message)) {
+                    var records = response.message;
+                    console.log(`the length of records is ${records.length}`);
+                    for (var i = 0; i < records.length; i++) {
+                        var record = records[i];
+                        console.log(`Document name  ${record.name}`);
+                        // Fetch and log all fields from the referenced Utilization Register
+                        fetchAndLogAllFields(record.name, frm); // Pass the name of the record
+                    }
+                }
+            }
+        });
+    }
+}
+
+function fetchAndLogAllFields(utilizationRegisterName, frm) {
     frappe.call({
         method: 'frappe.client.get',
         args: {
@@ -351,32 +360,36 @@ function fetchAndLogAllFields(utilizationRegisterName) {
             name: utilizationRegisterName
         },
         callback: function(response) {
-            console.log("here is the record");
             if (response.message) {
                 var utilizationRegister = response.message;
                 console.log(`the report for this document is ${utilizationRegister.name}`);
                 for (var field in utilizationRegister) {
                     if (utilizationRegister.hasOwnProperty(field)) {
                         if (field === 'utilization_register_table' && Array.isArray(utilizationRegister[field])) {
-                             console.log(`..............list of tables for ${utilizationRegister.name} .................`)
+                            console.log(`..............list of tables for ${utilizationRegister.name} .................`);
+                                 frm.clear_table('utilization_report_table');
+
                             for (var i = 0; i < utilizationRegister[field].length; i++) {
-                                var tableRow = utilizationRegister[field][i];
-                                console.log(`Row ${i + 1}:`);
-                                console.log(`plate_no: ${tableRow.plate_no}`);
-                                console.log(`Worked Hours: ${tableRow.worked_hrs}`);
-                                console.log(`difference: ${tableRow.Diff}`);
-                                console.log(`Equipment Type: ${tableRow.equipment_type}`);
-                                console.log(`Fuel In litres: ${tableRow.fuel_in_ltrs}`);
-                            console.log("....this is the end of table fields")
+                                var source_row = utilizationRegister[field][i];
+                                // Assuming you have access to the utilization_register_report data
+                                // You can add rows to the utilization_report_table
+                                var target_row = frappe.model.add_child(frm.doc, 'utilization_register_table', 'utilization_report_table');
+                                target_row.plate_no = source_row.plate_no;
+                                target_row.first_half_start = source_row.first_half_start;
+                                console.log(`the target row plate and source row plate ${target_row.plate_no}...${source_row.plate_no}`);
+                                console.log("....this is the end of table fields");
                                 // ... other fields
                             }
+                            refresh_field('utilization_report_table'); // Refresh the field to reflect changes
                         } else {
+                            // ... other fields
+                            console.log(`${field}: ${utilizationRegister[field]}`);
                         }
-                     console.log(`${field}: ${utilizationRegister[field]}`);
                     }
                 }
             }
-
         }
     });
 }
+
+

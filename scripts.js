@@ -310,3 +310,70 @@ frappe.ui.form.on('Purchase Order', {
      }
     },
    });
+
+
+
+//a script filtering by date
+frappe.ui.form.on('Daily Equipment Utilization_Report', {
+    start_date: function(frm) {
+        if (frm.doc.start_date) {
+            frappe.call({
+                method: 'frappe.client.get_list',
+                args: {
+                    doctype: 'Equipment Daily Time Utilization Register',
+                    filters: {
+                        'gc_date': ['between', [frm.doc.start_date, frm.doc.end_date]],
+                        'name': ['!=', frm.docname]
+                    },
+                
+                },
+                callback: function(response) {
+                    if (response.message && Array.isArray(response.message)) {
+                        var records = response.message;
+                        for (var i = 0; i < records.length; i++) {
+                            var record = records[i];
+
+                            console.log(`Record ${i + 1}:`);
+                            console.log(`the record name is ${record.name}`)
+                            // Fetch and log all fields from the referenced Utilization Register
+                            fetchAndLogAllFields(record.name);
+                        }
+                    }
+                }
+            });
+        }
+    },
+    // Add the appropriate hooks for 'start_date' and 'end_date' fields if needed
+});
+function fetchAndLogAllFields(utilizationRegisterName) {
+    frappe.call({
+        method: 'frappe.client.get',
+        args: {
+            doctype: 'Equipment Daily Time Utilization Register',
+            name: utilizationRegisterName
+        },
+        callback: function(response) {
+            if (response.message) {
+                var utilizationRegister = response.message;
+
+                console.log(`Utilization Register Fields for ${utilizationRegisterName}:`);
+                
+                // Access and log fields from the utilization_register_table array
+                if (utilizationRegister.utilization_register_table && Array.isArray(utilizationRegister.utilization_register_table)) {
+                    for (var i = 0; i < utilizationRegister.utilization_register_table.length; i++) {
+                        var tableRow = utilizationRegister.utilization_register_table[i];
+                        console.log(`Row ${i + 1}:`);
+                        console.log(`plate_no: ${tableRow.plate_no}`);
+                        console.log(`Worked Hours: ${tableRow.worked_hrs}`);
+                        console.log(`difference: ${tableRow.Diff}`);
+                        console.log(`Equipment Type: ${tableRow.equipment_type}`);
+                        console.log(`Fuel In litres: ${tableRow.fuel_in_ltrs}`);
+                        
+                        // ... other fields
+                    }
+                }
+            }
+        }
+    });
+}
+

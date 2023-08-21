@@ -1,4 +1,3 @@
-
 frappe.ui.form.on('Cashflow Schedule', {
     start_date: fetchAndAssign,
     project: fetchAndAssign,

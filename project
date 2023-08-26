@@ -1,1 +1,140 @@
+frappe.ui.form.on("Equipment Status Report", {
+    start_date: fetchAndAssign,
+    end_date: fetchAndAssign
+  });
+  
+  function fetchAndAssign(frm) {
+    if (frm) {
+      frappe.call({
+        method: "frappe.client.get_list",
+        args: {
+          doctype: "Equipment Daily Time Utilization Register",
+          filters: {
+            gc_date:
+              frm.doc.start_date && frm.doc.end_date
+                ? ["between", [frm.doc.start_date, frm.doc.end_date]]
+                : frm.doc.start_date
+                ? [">=", frm.doc.start_date]
+                : frm.doc.end_date
+                ? ["<=", frm.doc.end_date]
+                : undefined,
+          },
+          fields: ["project"],
+          filters: {
+            name: ["!=", frm.docname],
+          },
+        },
+        callback: function (response) {
+          if (response.message && Array.isArray(response.message)) {
+            var projects = response.message.map(record => record.project);
+            if (projects.length === 0) {
+              console.log("No projects found");
+              return;
+            }
+  
+            frm.clear_table("status_report_table");
+            frm.doc.status_report_table = []; // Clear the table
+            
+            projects.forEach(project => {
+              fetchAndLogAllFields(project, frm);
+            });
+  
+            refresh_field("status_report_table");
+          }
+        },
+      });
+    }
+  }
+function fetchAndLogAllFields(project, frm,table) {
+    console.log(`project passed is ${project}`)
+    frappe.call({
+      method: "frappe.client.get",
+      args: {
+        doctype: "Equipment Daily Time Utilization Register",
+        filters: {
+          project: project,
+        },
+      },
+      callback: function (response) {
+        if (response.message) {
+          var utilizationRegister = response.message;
+          var equipment_types = [
+            "Automobile",
+            "Back loader",
+            "bus",
+            "Craine",
+            "Double cab",
+            "Dozer",
+            "Dump Truck",
+            "Excavator",
+            "Fork Lift",
+            "Grader",
+            "Isuzu",
+            "Loader",
+            "Long Base",
+            "Single cab",
+            "Sino",
+            "Walk Behind Roller",
+            "Low Bed",
+            "Mini bus",
+            "Mixer",
+            "Motor Cycle",
+            "Pick Up",
+            "Roller",
+            "Project Total"
+          ];
+  
+          // Initialize the status_report_table
+         
+          for (var i = 0; i < equipment_types.length; i++) {
+           
+            var status_row_report = frappe.model.add_child(
+              frm.doc,
+              "status_report_table"
+            );
+            status_row_report.project = project;
+            status_row_report.equipment_type = equipment_types[i];
+            status_row_report.owenership = "own";
+            status_row_report.operational = 0;
+            status_row_report.idle_hrs = 0; // Initialize idle_hrs
+            status_row_report.down_hrs = 0; // Initialize down_hrs
+            status_row_report.total = 0;
+          }
+          // Filter rows based on plate_no
+          var filteredRows = utilizationRegister.utilization_register_table;
+          for (var i = 0; i < filteredRows.length; i++) {
+            var source_row = filteredRows[i];
+            var index = equipment_types.indexOf(source_row.equipment_type);
+             if(index==-1){
+
+             }else{
+             
+            table[index].operational +=
+                source_row.worked_hrs;
+            table[index].idle_hrs +=
+                source_row.idle_hrs;
+              table[index].down_hrs +=
+                source_row.down_hrs;
+             table[index].total +=
+                source_row.worked_hrs +
+                source_row.idle_hrs +
+                source_row.down_hrs;
+
+             }
+            // Update the properties for the corresponding status_row_report
+            
+            // ... (other assignments)
+          }
+          table[22].project=""
+          table[22].owenership="";
+          table[22].idle_hrs=100;
+          table[22].down=500;
+          table[22].total=800;
+          // Refresh the field to reflect changes
+          refresh_field("status_report_table");
+        }
+      },
+    });
+  }
+  
 

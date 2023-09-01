@@ -1,3 +1,42 @@
+
+SELECT 
+	dp.project AS "Project:Link/Project:120",
+	dp.task AS "Task:Link/Task:120",
+	dp.date AS "Date:Date:120",
+	dp.unit AS "Unit:100",
+	dp.quantity AS "Planned Quantity:100",
+	dp.activity_total_cost AS "Planned Amount:100"
+FROM 
+	`tabDaily Plan` dp
+WHERE 
+	dp.date >= %(from_date)s AND dp.date <= %(to_date)s;
+
+//cashflow  report
+SELECT
+    op.name AS "operational_plan:Link/Operational Plan:200",
+    mp.name AS "monthly_plan:Link/Monthly Plan:200",
+    mp.start_date AS "month_start_date:Date:Date:100",
+    SUM( mp.material_total_cost) AS "Material Total Cost:Float:200",
+    SUM( mp.equipment_total_cost) AS "Equipment Total Cost:Float:200",
+    SUM(mp.man_power_total_cost) AS "Man power Total Cost:Float:200",
+    (SUm(mp.material_total_cost) + SUM(mp.equipment_total_cost) +SUM( mp.man_power_total_cost)) AS total_outflow,
+    (SUM(task_used.SUM_OF_TASK)) AS total_inflow, -- Placeholder for inflow calculation
+    (SUM(task_used.SUM_OF_TASK) - (mp.material_total_cost + mp.equipment_total_cost + mp.man_power_total_cost)) AS net_cashflow
+FROM
+    `tabOperational Plan` AS op
+INNER JOIN
+    `tabMonthly Plan` AS mp ON op.name = mp.operational_plan
+INNER JOIN
+  (SELECT parent,SUM(rate*amount) AS SUM_OF_TASK FROM `tabMonthly Plan Detail` GROUP BY parent) task_used ON mp.name = task_used.parent
+WHERE
+        mp.start_date >= %(from_date)s
+        AND mp.start_date <= %(to_date)s
+        AND op.project = %(project)s  
+GROUP BY
+op.name,mp.name
+ORDER BY
+    op.name, mp.start_date;
+
 SELECT
     dp.project AS "Project:Link/Project:200",
     dp.task AS "Task:Link/Task:200",

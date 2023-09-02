@@ -1,5 +1,5 @@
 
-frappe.query_reports["Machinery Scheduling Report"] = {
+frappe.query_reports["Cashflow Report"] = {
 	"filters": [
 		{
 			fieldname:"from_date",
@@ -14,6 +14,14 @@ frappe.query_reports["Machinery Scheduling Report"] = {
 			fieldtype: "Date",
 			default: frappe.datetime.add_days(frappe.datetime.month_start(),-1),
 			reqd: 1
+		},
+	        {
+			"fieldname": "project",
+			"label": __("Project"),
+			"fieldtype": "Link",
+			"options": "Project",
+			"default": "Dodolla Construction of Site Works - Infra",
+			"reqd": 1
 		},
 	]
 }

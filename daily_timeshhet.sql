@@ -13,5 +13,8 @@ SELECT
     ts.note AS "Remark:Data:200"
 FROM
     `tabTimesheet` ts
+INNER JOIN
+  (SELECT parent,uom,quantity FROM `tabMonthly Plan Detail` GROUP BY parent) task_used ON mp.name = task_used.parent
+
 WHERE  
     ts.date >= %(from_date)s AND ts.date <= %(to_date)s;

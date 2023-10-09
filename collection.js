@@ -143,6 +143,8 @@ frm.clear_table("grand_summary_sheet_of_payment");
 frm.set_value("table_34", []);//assigning table as empty
 
 //looping over table field
+//adding eval
+"depends_on": "eval:doc.purpose == 'Material Transfer'",
 
     
 

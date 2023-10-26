@@ -100,7 +100,24 @@ frappe.ui.form.on("Item", {
      });
    },
 });
+frappe.ui.form.on("User Card",{
+    onload: function (frm, cdt, cdn) {
+         frm.set_value("item_group","Fixed Asset");
+        console.log("field refreshed");
+         refresh_field("item_group");
+        console.log(frm.doc.item_group)
+            frm.set_query("item","user_card_item", function (frm, cdt, cdn) {
+                return {
+                    "filters": {
+                        "item_group":"Fixed Asset"
+                    }
+                }
+            });
+      
 
+
+    }
+});
 //14.take the current user
 frappe.ui.form.on('Tyre Control Card', {
  onload: function(frm) {

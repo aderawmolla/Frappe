@@ -4,7 +4,8 @@
 
 
 frappe.ui.form.on("Traffic Count Result", {
-    before_save: function (frm, cdt, cdn) {
+    onload: function (frm, cdt, cdn) {
+         console.log("start function");
         calculateStaffs(frm, cdt, cdn, "day");
         calculateStaffs(frm, cdt, cdn, "night");
         calculateStaffs(frm, cdt, cdn,"two");
@@ -139,8 +140,7 @@ function calculateAvarages(frm, cdt, cdn) {
 }
 
 function calculateStaffs(frm, cdt, cdn, whichStaff) {
-    var length =
-        tableDocs.length;
+   console.log("come on")
     var carTotal = 0;
     var LRoverTotal = 0;
     var SBusTotal = 0;
@@ -170,8 +170,13 @@ function calculateStaffs(frm, cdt, cdn, whichStaff) {
         table = "seasonal_count";
         i = 5;
     }
-    var tableDocs = frm.doc.table;
-    $.each(tableDocs, function (i, d) {
+    console.log("does this excuted")
+     var tableDocs = frm.doc[table];
+     var length =
+        tableDocs.length;
+    console.log("the length is",length)
+    if(whichStaff!="seasonal"){
+        $.each(tableDocs, function (i, d) {
         carTotal += d.car;
         LRoverTotal += d.lover;
         SBusTotal += d.s_bus;
@@ -183,6 +188,10 @@ function calculateStaffs(frm, cdt, cdn, whichStaff) {
         TotalTotal = d.total;
     });
 
+        
+    }
+  
+
     for (i = 0; i <= len; i++) {
         var child = frm.add_child(`${table}`);
         frm.refresh_field(`${table}`);
@@ -192,15 +201,15 @@ function calculateStaffs(frm, cdt, cdn, whichStaff) {
 
 
     if (whichStaff=="seasonal") {
-         tableDocs[length].date = "seasonal 1 ADT (H)";
-        tableDocs[length + 1].date = "seasonal 2 ADT(I)";
-        tableDocs[length + 2].date = "seasonal 3 ADT(J)";
-        tableDocs[length + 3].date = "AVERAGE(L=(H+I+J)/3)";
-        tableDocs[length + 4].date = "seasonal correction factor (SF)(K)";
-        tableDocs[length + 5].date = "AADT(K*L) OR L";
+        tableDocs[length].name = "seasonal 1 ADT (H)";
+        tableDocs[length + 1].name = "seasonal 2 ADT(I)";
+        tableDocs[length + 2].name = "seasonal 3 ADT(J)";
+        tableDocs[length + 3].name = "AVERAGE(L=(H+I+J)/3)";
+        tableDocs[length + 4].name = "seasonal correction factor (SF)(K)";
+        tableDocs[length + 5].name = "AADT(K*L) OR L";
     }
     else {
-
+ 
         tableDocs[length].date = "Total SUm OF Column A";
 
         tableDocs[length].car = carTotal;

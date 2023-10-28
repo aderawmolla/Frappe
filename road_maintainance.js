@@ -6,8 +6,8 @@
 frappe.ui.form.on("Traffic Count Result", {
     onload: function (frm, cdt, cdn) {
         console.log("start function");
-        calculateStaffs(frm, cdt, cdn, "day");
-        calculateStaffs(frm, cdt, cdn, "night");
+        calculateStaffs(frm, cdt, cdn,"day");
+        calculateStaffs(frm, cdt, cdn,"night");
         calculateStaffs(frm, cdt, cdn, "two");
         calculateStaffs(frm, cdt, cdn, "seasonal");
         frm.refresh_field("traffic_count_result_table");
@@ -154,7 +154,8 @@ function calculateStaffs(frm, cdt, cdn, whichStaff) {
     var table_field;
     var len;
     if (whichStaff == "day") {
-       table_field="traffic_count_result_table";
+       console.log("excute day function",frm.doc.traffic_count_result_table)
+        table_field="traffic_count_result_table";
         table = frm.doc.traffic_count_result_table;
         len = 3;
     }

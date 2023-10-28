@@ -1,52 +1,35 @@
+//Two Days Count...
+//Night Time Count
+//Seasonal Count
+
+
 frappe.ui.form.on("Traffic Count Result", {
-    onload: function (frm, cdt, cdn) {
-        //    var length=frm.doc.traffic_count_result_table.length;
-        //    console.log("length of traffic table",length)
-        //     frm.doc.traffic_count_result_table[30].date="Total SUm OF Column A";
-        //     frm.doc.traffic_count_result_table[31].date="Avarage(D=A/7)";
-        //     frm.doc.traffic_count_result_table[32].date="N.f(E=(B+C)/C)";
-        //     frm.doc.traffic_count_result_table[33].date="A.D.T(E*D)";
-        //     frm.doc.traffic_count_result_table[34].date="";
-        //     frm.doc.traffic_count_result_table[35].date="Night Time Count";
-        //     frm.doc.traffic_count_result_table[65].date="Total(G)";
-        //     frm.doc.traffic_count_result_table[66].date="Avarage";
-        //     frm.doc.traffic_count_result_table[67].date="";
-        //     frm.doc.traffic_count_result_table[68].date="Two days Count";
-        //     frm.doc.traffic_count_result_table[71].date="Total(F)";
-        //     frm.doc.traffic_count_result_table[72].date="Avarage";
-        //     frm.doc.traffic_count_result_table[73].date="";
-        //     frm.doc.traffic_count_result_table[74].date="Seasonal Count";
-        //     frm.doc.traffic_count_result_table[75].date="Seasonal 1 ADT(H)";
-        //     frm.doc.traffic_count_result_table[76].date="Seasonal 2 ADT(I)";
-        //     frm.doc.traffic_count_result_table[77].date="Seasonal 3 ADt(J)";
-        //     frm.doc.traffic_count_result_table[78].date="Avarage()";
-        //     frm.doc.traffic_count_result_table[79].date="Seasonal Correction Factor";
-        //     frm.doc.traffic_count_result_table[80].date="AADT";
-        calculateStaffs(frm, cdt, cdn);
-        calculateStaffsTwoDays(frm,cdt,cdn);
+    before_save: function (frm, cdt, cdn) {
+        calculateStaffs(frm, cdt, cdn, "day");
+        calculateStaffs(frm, cdt, cdn, "night");
+        calculateStaffs(frm, cdt, cdn, "two");
+        calculateStaffs(frm,cdt,cdn,"seasonal");
         frm.refresh_field("traffic_count_result_table");
+        frm.refresh_field("night_time_count");
+        frm.refresh_field("two_days_count");
+        frm.refresh_field("seasonal_count");
     }
 });
 frappe.ui.form.on("Traffic Count Result Table", {
     car: function (frm, cdt, cdn) {
         calculateRowTotal(frm, cdt, cdn);
-        calculateStaffs(frm, cdt, cdn);
     },
     lover: function (frm, cdt, cdn) {
         calculateRowTotal(frm, cdt, cdn);
-        calculateStaffs(frm, cdt, cdn);
     },
     s_bus: function (frm, cdt, cdn) {
         calculateRowTotal(frm, cdt, cdn);
-        calculateStaffs(frm, cdt, cdn);
     },
     l_bus: function (frm, cdt, cdn) {
         calculateRowTotal(frm, cdt, cdn);
-        calculateStaffs(frm, cdt, cdn);
     },
     lover: function (frm, cdt, cdn) {
         calculateRowTotal(frm, cdt, cdn);
-        calculateStaffs(frm, cdt, cdn);
     },
     struck: function (frm, cdt, cdn) {
         calculateRowTotal(frm, cdt, cdn);
@@ -54,82 +37,111 @@ frappe.ui.form.on("Traffic Count Result Table", {
     },
     mtruck: function (frm, cdt, cdn) {
         calculateRowTotal(frm, cdt, cdn);
-       calculateStaffs(frm, cdt, cdn);
+        calculateStaffs(frm, cdt, cdn);
 
     },
     htruck: function (frm, cdt, cdn) {
         calculateRowTotal(frm, cdt, cdn);
-        calculateStaffs(frm, cdt, cdn);
     },
     ttrailor: function (frm, cdt, cdn) {
         calculateRowTotal(frm, cdt, cdn);
-        calculateStaffs(frm, cdt, cdn);
     },
 });
-frappe.ui.form.on("Traffic Count Result Table", {
+frappe.ui.form.on("Two Days Count", {
     car: function (frm, cdt, cdn) {
         calculateRowTotal(frm, cdt, cdn);
-        calculateStaffsTwoDays(frm, cdt, cdn);
     },
     lover: function (frm, cdt, cdn) {
         calculateRowTotal(frm, cdt, cdn);
-        calculateStaffsTwoDays(frm, cdt, cdn);
     },
     s_bus: function (frm, cdt, cdn) {
         calculateRowTotal(frm, cdt, cdn);
-        calculateStaffsTwoDays(frm, cdt, cdn);
     },
     l_bus: function (frm, cdt, cdn) {
         calculateRowTotal(frm, cdt, cdn);
-        calculateStaffsTwoDays(frm, cdt, cdn);
     },
     lover: function (frm, cdt, cdn) {
         calculateRowTotal(frm, cdt, cdn);
-        calculateStaffsTwoDays(frm, cdt, cdn);
     },
     struck: function (frm, cdt, cdn) {
         calculateRowTotal(frm, cdt, cdn);
-        calculateStaffsTwoDays(frm, cdt, cdn);
 
     },
     mtruck: function (frm, cdt, cdn) {
         calculateRowTotal(frm, cdt, cdn);
-        calculateStaffsTwoDays(frm, cdt, cdn);
 
     },
     htruck: function (frm, cdt, cdn) {
         calculateRowTotal(frm, cdt, cdn);
-        calculateStaffs(frm, cdt, cdn);
     },
     ttrailor: function (frm, cdt, cdn) {
         calculateRowTotal(frm, cdt, cdn);
-      calculateStaffsTwoDays(frm, cdt, cdn);
 
-     },
+    },
+});
+frappe.ui.form.on("Night Time Count", {
+    car: function (frm, cdt, cdn) {
+        calculateRowTotal(frm, cdt, cdn);
+    },
+    lover: function (frm, cdt, cdn) {
+        calculateRowTotal(frm, cdt, cdn);
+    },
+    s_bus: function (frm, cdt, cdn) {
+        calculateRowTotal(frm, cdt, cdn);
+    },
+    l_bus: function (frm, cdt, cdn) {
+        calculateRowTotal(frm, cdt, cdn);
+    },
+    lover: function (frm, cdt, cdn) {
+        calculateRowTotal(frm, cdt, cdn);
+    },
+    struck: function (frm, cdt, cdn) {
+        calculateRowTotal(frm, cdt, cdn);
+
+    },
+    mtruck: function (frm, cdt, cdn) {
+        calculateRowTotal(frm, cdt, cdn);
+
+    },
+    htruck: function (frm, cdt, cdn) {
+        calculateRowTotal(frm, cdt, cdn);
+    },
+    ttrailor: function (frm, cdt, cdn) {
+        calculateRowTotal(frm, cdt, cdn);
+
+    },
+});
+frappe.ui.form.on("Seasonal Count", {
+ 
+   
 });
 function calculateRowTotal(frm, cdt, cdn) {
     var child = locals[cdt][cdn];
     var total = child.car + child.lover + child.s_bus + child.l_bus + child.struck + child.mtruck + child.htruck + child.ttrailor;
     frappe.model.set_value(cdt, cdn, "total", total);
     frm.refresh_field("traffic_count_result_table");
-   
+    frm.refresh_field("night_time_count");
+    frm.refresh_field("two_days_count");
+    frm.refresh_field("seasonal_count");
     //   calculateAvarages(frm,cdt,cdn);
 }
 function calculateAvarages(frm, cdt, cdn) {
 
     var total_qt = 0;
-    $.each(frm.doc.traffic_count_result_table, function (index, row) {
-        total_cost_ac += row.total_act1;
-        total_qt += row.total_qt1;
-    });
+    $.each(
+        tableDocs, function (index, row) {
+            total_cost_ac += row.total_act1;
+            total_qt += row.total_qt1;
+        });
     frm.set_value("total_cost", total_cost_ac);
     frm.set_value("total_qt", total_qt);
     frm.refresh();
 
 }
 
-function calculateStaffs(frm, cdt, cdn) {
-    var length = frm.doc.traffic_count_result_table.length;
+function calculateStaffs(frm, cdt, cdn, whichStaff) {
+    var length =
+        tableDocs.length;
     var carTotal = 0;
     var LRoverTotal = 0;
     var SBusTotal = 0;
@@ -139,7 +151,28 @@ function calculateStaffs(frm, cdt, cdn) {
     var HTruckTotal = 0;
     var TTrailorTotal = 0;
     var TotalTotal = 0;
-    $.each(frm.doc.traffic_count_result_table, function (i, d) {
+    var table;
+    var len;
+    if (whichStaff == "day") {
+        table = "traffic_count_result_table";
+        len = 3;
+    }
+    else if (whichStaff == "night") {
+        table = "night_time_count";
+        len = 1;
+
+    }
+    else if (whichStaff == "two") {
+        table = "two_days_count";
+        len = 1;
+
+    }
+    else {
+        table = "seasonal_count";
+        i = 5;
+    }
+    var tableDocs = frm.doc.table;
+    $.each(tableDocs, function (i, d) {
         carTotal += d.car;
         LRoverTotal += d.lover;
         SBusTotal += d.s_bus;
@@ -150,100 +183,103 @@ function calculateStaffs(frm, cdt, cdn) {
         TTrailorTotal = d.ttrailor;
         TotalTotal = d.total;
     });
-    for (var i = 0; i <= 3; i++) {
-        var child = frm.add_child("traffic_count_result_table");
-        refresh_field("traffic_count_result_table");
+
+    for (i = 0; i <= len; i++) {
+        var child = frm.add_child(`${table}`);
+        frm.refresh_field(`${table}`);
+       
     }
-      //total
-    frm.doc.traffic_count_result_table[length].date="Total SUm OF Column A";
-    frm.doc.traffic_count_result_table[length].car=carTotal;
-    frm.doc.traffic_count_result_table[length].lover=LRoverTotal;
-    frm.doc.traffic_count_result_table[length].s_bus=SBusTotal;
-    frm.doc.traffic_count_result_table[length].l_bus=LBusTotal;
-    frm.doc.traffic_count_result_table[length].mtruck=MTruckTotal;
-    frm.doc.traffic_count_result_table[length].htruck=HTruckTotal;
-    frm.doc.traffic_count_result_table[length].ttrailor=TTrailorTotal;
-    frm.doc.traffic_count_result_table[length].total=TotalTotal;
-//avarage
-    frm.doc.traffic_count_result_table[length+1].date="Avarage(D=A/7)";
-    frm.doc.traffic_count_result_table[length+1].car=carTotal/length;
-    frm.doc.traffic_count_result_table[length+1].lover=LRoverTotal/length;
-    frm.doc.traffic_count_result_table[length+1].s_bus=SBusTotal/length;
-    frm.doc.traffic_count_result_table[length+1].l_bus=LBusTotal/length;
-    frm.doc.traffic_count_result_table[length+1].mtruck=MTruckTotal/length;
-    frm.doc.traffic_count_result_table[length+1].htruck=HTruckTotal/length;
-    frm.doc.traffic_count_result_table[length+1].ttrailor=TTrailorTotal/length;
-    frm.doc.traffic_count_result_table[length+1].total=TotalTotal/length;
+    //total
 
 
-//nfc
-
-    frm.doc.traffic_count_result_table[length+2].date="N.F(E=(B+C)/C)";
-    frm.doc.traffic_count_result_table[length+2].car=carTotal/length;
-    frm.doc.traffic_count_result_table[length+2].lover=LRoverTotal/length;
-    frm.doc.traffic_count_result_table[length+2].s_bus=SBusTotal/length;
-    frm.doc.traffic_count_result_table[length+2].l_bus=LBusTotal/length;
-    frm.doc.traffic_count_result_table[length+2].mtruck=MTruckTotal/length;
-    frm.doc.traffic_count_result_table[length+2].htruck=HTruckTotal/length;
-    frm.doc.traffic_count_result_table[length+2].ttrailor=TTrailorTotal/length;
-    frm.doc.traffic_count_result_table[length+2].total=TotalTotal/length;
-//
-   frm.doc.traffic_count_result_table[length+3].date="A.D.T(E*D)";
-    frm.doc.traffic_count_result_table[length+3].car=carTotal/length;
-    frm.doc.traffic_count_result_table[length+3].lover=LRoverTotal/length;
-    frm.doc.traffic_count_result_table[length+3].s_bus=SBusTotal/length;
-    frm.doc.traffic_count_result_table[length+3].l_bus=LBusTotal/length;
-    frm.doc.traffic_count_result_table[length+3].mtruck=MTruckTotal/length;
-    frm.doc.traffic_count_result_table[length+3].htruck=HTruckTotal/length;
-    frm.doc.traffic_count_result_table[length+3].ttrailor=TTrailorTotal/length;
-    frm.doc.traffic_count_result_table[length+3].total=TotalTotal/length;
-
-}
-function calculateStaffsTwoDays(frm, cdt, cdn) {
-    var length = frm.doc.traffic_count_result_table.length;
-    var carTotal = 0;
-    var LRoverTotal = 0;
-    var SBusTotal = 0;
-    var LBusTotal = 0;
-    var STruckTotal = 0;
-    var MTruckTotal = 0;
-    var HTruckTotal = 0;
-    var TTrailorTotal = 0;
-    var TotalTotal = 0;
-    $.each(frm.doc.traffic_count_result_table, function (i, d) {
-        carTotal += d.car;
-        LRoverTotal += d.lover;
-        SBusTotal += d.s_bus;
-        LBusTotal += d.l_bus;
-        STruckTotal = d.struck;
-        MTruckTotal = d.mtruck;
-        HTruckTotal = d.htruck;
-        TTrailorTotal = d.ttrailor;
-        TotalTotal = d.total;
-    });
-    for (var i = 0; i <= 1; i++) {
-        var child = frm.add_child("traffic_count_result_table");
-        refresh_field("traffic_count_result_table");
+    if (whichStaff=="seasonal") {
+         tableDocs[length].date = "seasonal 1 ADT (H)";
+        tableDocs[length + 1].date = "seasonal 2 ADT(I)";
+        tableDocs[length + 2].date = "seasonal 3 ADT(J)";
+        tableDocs[length + 3].date = "AVERAGE(L=(H+I+J)/3)";
+        tableDocs[length + 4].date = "seasonal correction factor (SF)(K)";
+        tableDocs[length + 5].date = "AADT(K*L) OR L";
     }
-      //total
-    frm.doc.traffic_count_result_table[length].date="Total SUm OF Column A";
-    frm.doc.traffic_count_result_table[length].car=carTotal;
-    frm.doc.traffic_count_result_table[length].lover=LRoverTotal;
-    frm.doc.traffic_count_result_table[length].s_bus=SBusTotal;
-    frm.doc.traffic_count_result_table[length].l_bus=LBusTotal;
-    frm.doc.traffic_count_result_table[length].mtruck=MTruckTotal;
-    frm.doc.traffic_count_result_table[length].htruck=HTruckTotal;
-    frm.doc.traffic_count_result_table[length].ttrailor=TTrailorTotal;
-    frm.doc.traffic_count_result_table[length].total=TotalTotal;
-//avarage
-    frm.doc.traffic_count_result_table[length+1].date="Avarage(D=A/7)";
-    frm.doc.traffic_count_result_table[length+1].car=carTotal/length;
-    frm.doc.traffic_count_result_table[length+1].lover=LRoverTotal/length;
-    frm.doc.traffic_count_result_table[length+1].s_bus=SBusTotal/length;
-    frm.doc.traffic_count_result_table[length+1].l_bus=LBusTotal/length;
-    frm.doc.traffic_count_result_table[length+1].mtruck=MTruckTotal/length;
-    frm.doc.traffic_count_result_table[length+1].htruck=HTruckTotal/length;
-    frm.doc.traffic_count_result_table[length+1].ttrailor=TTrailorTotal/length;
-    frm.doc.traffic_count_result_table[length+1].total=TotalTotal/length;
+    else {
+
+        tableDocs[length].date = "Total SUm OF Column A";
+
+        tableDocs[length].car = carTotal;
+
+        tableDocs[length].lover = LRoverTotal;
+
+        tableDocs[length].s_bus = SBusTotal;
+
+        tableDocs[length].l_bus = LBusTotal;
+
+        tableDocs[length].mtruck = MTruckTotal;
+
+        tableDocs[length].htruck = HTruckTotal;
+
+        tableDocs[length].ttrailor = TTrailorTotal;
+
+        tableDocs[length].total = TotalTotal;
+        //avarage
+
+        tableDocs[length + 1].date = "Avarage(D=A/7)";
+
+        tableDocs[length + 1].car = carTotal / length;
+
+        tableDocs[length + 1].lover = LRoverTotal / length;
+
+        tableDocs[length + 1].s_bus = SBusTotal / length;
+
+        tableDocs[length + 1].l_bus = LBusTotal / length;
+
+        tableDocs[length + 1].mtruck = MTruckTotal / length;
+
+        tableDocs[length + 1].htruck = HTruckTotal / length;
+
+        tableDocs[length + 1].ttrailor = TTrailorTotal / length;
+
+        tableDocs[length + 1].total = TotalTotal / length;
+
+    }
+
+    //nfc
+    if (whichStaff == "day") {
+
+        tableDocs[length + 2].date = "N.F(E=(B+C)/C)";
+
+        tableDocs[length + 2].car = carTotal / length;
+
+        tableDocs[length + 2].lover = LRoverTotal / length;
+
+        tableDocs[length + 2].s_bus = SBusTotal / length;
+
+        tableDocs[length + 2].l_bus = LBusTotal / length;
+
+        tableDocs[length + 2].mtruck = MTruckTotal / length;
+
+        tableDocs[length + 2].htruck = HTruckTotal / length;
+
+        tableDocs[length + 2].ttrailor = TTrailorTotal / length;
+
+        tableDocs[length + 2].total = TotalTotal / length;
+        //
+
+        tableDocs[length + 3].date = "A.D.T(E*D)";
+
+        tableDocs[length + 3].car = carTotal / length;
+
+        tableDocs[length + 3].lover = LRoverTotal / length;
+
+        tableDocs[length + 3].s_bus = SBusTotal / length;
+
+        tableDocs[length + 3].l_bus = LBusTotal / length;
+
+        tableDocs[length + 3].mtruck = MTruckTotal / length;
+
+        tableDocs[length + 3].htruck = HTruckTotal / length;
+
+        tableDocs[length + 3].ttrailor = TTrailorTotal / length;
+
+        tableDocs[length + 3].total = TotalTotal / length;
+    }
 
 }

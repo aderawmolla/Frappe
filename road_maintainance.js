@@ -151,7 +151,7 @@ function calculateStaffs(frm, cdt, cdn, whichStaff) {
     var TTrailorTotal = 0;
     var TotalTotal = 0;
     var table;
-   var table_field;
+    var table_field;
     var len;
     if (whichStaff == "day") {
        table_field="traffic_count_result_table";
@@ -178,10 +178,10 @@ table_field="night_time_count";
     console.log("does this excuted")
     var tableDocs = frm.doc[table];
     var length =
-        tableDocs.length;
+        table.length;
     console.log("the length is", length)
     if (whichStaff != "seasonal") {
-        $.each(tableDocs, function (i, d) {
+        $.each(table, function (i, d) {
             carTotal += d.car;
             LRoverTotal += d.lover;
             SBusTotal += d.s_bus;

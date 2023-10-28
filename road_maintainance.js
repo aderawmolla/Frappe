@@ -7,7 +7,7 @@ frappe.ui.form.on("Traffic Count Result", {
     before_save: function (frm, cdt, cdn) {
         calculateStaffs(frm, cdt, cdn, "day");
         calculateStaffs(frm, cdt, cdn, "night");
-        calculateStaffs(frm, cdt, cdn, "two");
+        calculateStaffs(frm, cdt, cdn,"two");
         calculateStaffs(frm,cdt,cdn,"seasonal");
         frm.refresh_field("traffic_count_result_table");
         frm.refresh_field("night_time_count");
@@ -37,7 +37,6 @@ frappe.ui.form.on("Traffic Count Result Table", {
     },
     mtruck: function (frm, cdt, cdn) {
         calculateRowTotal(frm, cdt, cdn);
-        calculateStaffs(frm, cdt, cdn);
 
     },
     htruck: function (frm, cdt, cdn) {

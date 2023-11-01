@@ -1,6 +1,7 @@
 //1.project link of source doc,2nd argument source to be assigned,target to be assigned
 cur_frm.add_fetch('project', 'consultant', 'consultant');
 //2.calling backend and fetch data
+host/api/meathod/frappe/client/get_value
 frappe.call({
                 method: 'frappe.client.get_value',//get and get_lists with fields and fildname are alternatives
                 args: {

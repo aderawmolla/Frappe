@@ -107,6 +107,10 @@ frappe.ui.form.on("User Card",{
         console.log("field refreshed");
          refresh_field("item_group");
         console.log(frm.doc.item_group)
+      item...linked field in tha child document to be assigned
+      user_card_item...table field 
+       item_group...filter to be applied in the c urrent document
+      
             frm.set_query("item","user_card_item", function (frm, cdt, cdn) {
                 return {
                     "filters": {

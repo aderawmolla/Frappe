@@ -1,1 +1,70 @@
+{%
+var _p=[],print=function(){_p.push.apply(_p,arguments)};
+with(obj){
+_p.push('
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplier Winner Report</title>
+</head>
 
+<body>
+    <h2 class="text-center">Supplier Winner Report</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr> ');
+                if (data.length > 0 && typeof data[0] === 'object') {
+                _p.push(' <th style="width: 12%">የዕቃው አይነት</th>
+                <th style="width: 12%">መለኪያ</th>
+                <th style="width: 12%">ብዛት</th> ');
+                var uniqueSuppliers = [];
+                for (var i = 0; i < data.length; i++) { _p.push(' ');
+     if (data[i]["Supplier"] && uniqueSuppliers.indexOf(data[i]["Supplier"]) === -1) { 
+    _p.push(' <th style="width: 12%">', data[i]["Supplier"] ,'</th> ');
+                    uniqueSuppliers.push(data[i]["Supplier"]);
+                    _p.push(' ');
+                    }
+                    _p.push(' ');
+                    }
+                    _p.push(' <th style="width: 12%">ዝቅተኛ ዋጋ</th>
+                    <th style="width: 12%"> ጠ/ዋጋ</th>
+                    <th style="width: 12%">የተመረጠው ድርጅት</th>
+                    <th style="width: 12%">ምርመር</th> ');
+                    } else {
+                    _p.push(' <th>No data available</th> ');
+                    }
+                    _p.push('
+            </tr>
+        </thead>
+        <tbody> ');
+            for (var i = 0; i < data.length; i++) { _p.push(' <tr> ');
+                if (typeof data[i] === 'object') {
+                _p.push(' <td style="width: 12%">', data[i]["Item Code"] ,'</td>
+                <td style="width: 12%">', data[i]["UOM"] ,'</td>
+                <td style="width: 12%">', data[i]["Quantity"] ,'</td> ');
+                for (var j = 0; j < uniqueSuppliers.length; j++) { _p.push(' ');
+     var supplierData = data.filter(d => d["Supplier"] === uniqueSuppliers[j]);
+    _p.push(' <td style="width: 12%"> ');
+                    for (var k = 0; k < supplierData.length; k++) { _p.push(' ', supplierData[k]["Total Amount"] ,' ');
+     } 
+    _p.push(' </td> ');
+                        }
+                        _p.push(' <td style="width: 12%">', data[i]["Total Amount"] ,'</td>
+                        <td style="width: 12%"></td>
+                        <td style="width: 12%"></td>
+                        <td style="width: 12%"></td>
+                        <td style="width: 12%"></td> ');
+                        } else {
+                        _p.push(' <td style="width: 12%">Supplier information not available</td> ');
+                        }
+                        _p.push(' </tr> ');
+                        }
+                        _p.push(' </tbody>
+    </table> <!-- Example: Element to hide before printing -->
+    <div id="hideBeforePrint">This will be hidden before printing</div>
+</body>
+
+</html> ');}return _p.join('');
+%}

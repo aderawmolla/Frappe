@@ -168,6 +168,8 @@ frm.set_value("table_34", []);//assigning table as empty
 //adding eval
 "depends_on": "eval:doc.purpose == 'Material Transfer'",
   eval:doc.delivered_by_supplier==1||doc.supplier
+    GROUP_CONCAT(pr.name) AS "PR Name:Link/PR"
+
 
     
 

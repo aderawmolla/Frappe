@@ -158,6 +158,9 @@ frm.set_df_property('myfield', 'read_only', frm.doc.__islocal ? 0 : 1); // use t
 var table = frm.doc.payment_table;//initialize table field
 frappe.throw(`Invalid  12 hour format on "second half end" : ${child.second_half_end}` ); //throw error message
 frappe.msgprint('Custom action performed when canceling Purchase Order.'); //printing messagees
+frappe.show_alert (
+                  `There is no Stock Entry(ሞዴል 22) which has plate no: ${plat_no}, technician name: ${technician_name} and date: ${date_ec}`
+                );
 frm.refresh();//refresh the whole document
 frm.refresh_field("planned"); //refresh table field with frm
 refresh_field("planned");//you can refresh for parent field for non-table fields
